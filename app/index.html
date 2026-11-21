@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kurtain</title>
+<meta name="description" content="Covers Instagram Reels and the Explore feed. Search keeps working.">
+<meta property="og:title" content="Kurtain">
+<meta property="og:description" content="Covers Instagram Reels and the Explore feed. Search keeps working.">
+<meta property="og:image" content="https://hevinxx.github.io/kurtain-site/app/icon.png">
+<link rel="icon" href="icon.png">
+<script>
+  // Android에서는 페이지를 보여 주지 않고 Play로 바로 보낸다. 미리보기: ?stay
+  // 인스타그램 인앱 브라우저는 https Play 링크를 웹 페이지로 열기 때문에 market://로 Play 스토어 앱을 띄운다.
+  // 그 밖의 브라우저(Chrome 등)는 https Play 링크를 Play 스토어 앱으로 넘긴다.
+  (function () {
+    var ua = navigator.userAgent || "";
+    if (location.search.indexOf("stay") !== -1 || !/Android/.test(ua)) return;
+    var web = "https://play.google.com/store/apps/details?id=io.hevinxx.kurtain";
+    if (/Instagram/.test(ua)) {
+      location.href = "market://details?id=io.hevinxx.kurtain";
+      setTimeout(function () { if (!document.hidden) location.replace(web); }, 1500);
+    } else {
+      location.replace(web);
+    }
+  })();
+</script>
+<link rel="stylesheet" href="../style.css">
+<style>
+  main{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:400px}
+  .icon{width:96px;height:96px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  h1{margin-top:20px}
+  .store{display:block;width:100%;margin-top:28px;padding:14px 20px;border-radius:999px;background:var(--accent);color:var(--bg);font-weight:600;text-decoration:none}
+  footer{width:100%}
+</style>
+</head><body><main>
+<img class="icon" src="icon.png" alt="">
+<h1>Kurtain</h1>
+<p class="meta" id="lead">Covers Instagram Reels and the Explore feed. Search keeps working.</p>
+<a class="store" id="store" href="https://play.google.com/store/apps/details?id=io.hevinxx.kurtain">Get it on Google Play</a>
+<footer id="note">Kurtain is not affiliated with, endorsed by, or sponsored by Instagram or Meta.</footer>
+</main>
+<script>
+  if (/^ko\b/i.test(navigator.language || "")) {
+    document.documentElement.lang = "ko";
+    document.getElementById("lead").textContent = "인스타그램 릴스와 탐색 피드를 가립니다. 검색은 그대로 씁니다.";
+    document.getElementById("store").textContent = "Google Play에서 받기";
+    document.getElementById("note").textContent = "Kurtain은 Instagram 또는 Meta와 제휴하거나 그 승인을 받은 앱이 아닙니다.";
+  }
+</script>
+</body></html>
